@@ -1,5 +1,5 @@
 // Time Complexity : The time complexity is O(n) where n is the number of nodes
-// Space Complexity : Te space complexity is O(1)
+// Space Complexity : Te space complexity is O(h) where h is the height of the tree
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
