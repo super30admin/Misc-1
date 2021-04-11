@@ -1,0 +1,35 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    
+    def postorder(self,root,excess):
+        if(not root):
+            return 0;
+        # l stores the no of extra/required nodes of left subtree
+        l= self.postorder(root.left,excess);
+        # r stores the no of extra/required nodes of right subtree
+        r= self.postorder(root.right,excess);
+        # add the number of extra number of nodes present in left & right subtrees
+        excess[0] =excess[0] + (abs(l)+ abs(r));
+        # return thr number of coins after deducting one for the current node
+        return root.val+l+r-1;
+    
+    
+    def distributeCoins(self, root: TreeNode) -> int:
+        # initialize excess ref variable to store the number of moves
+        excess=[0];
+        # invoke post order function
+        self.postorder(root,excess);
+        return excess[0];
+    
+    '''
+    time complexity = O)(n)
+    space complexity = O(1)
+    '''
+        
+        
+        
