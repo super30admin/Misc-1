@@ -1,0 +1,27 @@
+from collections import deque
+class Solution:
+    def brokenCalc(self, X: int, Y: int) -> int:
+        count = 0;
+        # iterate until y greater than x
+        while(Y > X):
+            # divide y be 2 if it is divisable by 2
+            if(Y%2 == 0):
+                Y //=2;
+            else:
+                Y += 1;
+            count += 1;
+            
+        return count + X-Y
+    
+    '''
+    time complexity = O(log(y-x))
+    space compelxity = O(1)
+    '''
+                
+            
+        
+                
+                
+            
+            
+        
