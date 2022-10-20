@@ -1,0 +1,59 @@
+#Broken Calculator
+#tc: O(logY)
+#sc:  O(logY)
+class Solution:
+    def brokenCalc(self, X, Y):
+        if X > Y: return X - Y
+        if X == Y: return 0
+        if Y % 2 == 0:
+            return self.brokenCalc(X, Y//2) + 1
+        else:
+            return self.brokenCalc(X, Y + 1) + 1
+#Distribute Coins in Binary Tree
+class Solution:
+    # O(n) time,
+    # O(1) space,
+    # Approach: DFS, 
+    def distributeCoins(self, root: Optional[TreeNode]) -> int:
+        self.moves = 0
+        
+        def dfs(root: Optional[TreeNode], parent: Optional[TreeNode]) -> None:
+            if root is None:    return
+            
+            left = root.left
+            right = root.right
+            
+            if left:
+                dfs(left, root)
+                
+            if right:
+                dfs(right, root)
+                
+            if parent:
+                if root.val == 1:   return
+                if root.val < 1:
+                    parent.val += (root.val-1)
+                    self.moves += abs(root.val-1)
+                    root.val = 1
+                else:
+                    parent.val += (root.val-1)
+                    self.moves += abs(root.val-1)
+                    root.val = 1
+                    
+        dfs(root, None)
+        return self.moves
+ Nested List Weight Sum
+ #tc: O(n)
+#sc: O(n)
+class Solution:
+    def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        ans = wt = 0
+        queue = nestedList
+        while queue: 
+            wt += 1
+            newq = []
+            for x in queue: 
+                if x.isInteger(): ans += wt * x.getInteger()
+                else: newq.extend(x.getList())
+            queue = newq
+        return ans 
