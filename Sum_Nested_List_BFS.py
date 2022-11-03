@@ -45,6 +45,7 @@
 # Space complexity : O(n)
 # Leetcode : Solved and submitted
 
+# 2 queues
 from collections import deque
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
@@ -73,4 +74,29 @@ class Solution:
                     q.append(el)
                     depth.append(d+1)
         # return the final result
+        return res
+
+# 1 Queue
+from collections import deque
+class Solution:
+    def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        res = 0
+        q = deque([])
+        d = 1
+        
+        for el in nestedList:
+            q.append(el)
+        
+        while q:
+            size = len(q)
+            for i in range(size):
+                curr = q.popleft()
+            
+                if curr.isInteger():
+                    res += d * curr.getInteger()
+                else:
+                    for el in curr.getList():
+                        q.append(el)
+            d += 1
+            
         return res
