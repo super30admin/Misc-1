@@ -1,4 +1,4 @@
-// Time Complexity: P(log(target))
+// Time Complexity: O(log(target))
 // Space Complexity: O(1)
 class Solution {
     public int brokenCalc(int startValue, int target) {
