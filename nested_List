@@ -1,0 +1,27 @@
+//TimeComplexity.   O(n)
+//Spacecomplexity.  O(n)
+
+
+class Solution {
+    int result = 0;
+    
+    public int depthSum(List<NestedInteger> nestedList) {
+        
+        
+        dfs(nestedList,1);
+        return result;
+        
+        
+    }
+    
+    public void dfs(List<NestedInteger> nestedList, int depth){
+        
+        for(NestedInteger el : nestedList){
+            if(el.isInteger()){
+                result += el.getInteger()*depth;
+            }else{
+                dfs(el.getList(),depth+1);
+            }
+        }
+    }
+}
