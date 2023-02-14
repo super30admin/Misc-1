@@ -1,0 +1,25 @@
+//TimeComplexity.   O(n)
+//Spacecomplexity.  O(n)
+
+
+class Solution {
+    int moves = 0;
+    public int distributeCoins(TreeNode root) {
+        
+        
+        dfs(root);
+        return moves;
+    }
+    
+    public int dfs(TreeNode root){
+        
+        if(root == null)return 0;
+        int extra = root.val - 1 + dfs(root.left) + dfs(root.right);
+        // int left = dfs(left);
+        // int right. = dfs(right);
+        
+        moves += Math.abs(extra);
+        return extra;
+        
+    }
+}
