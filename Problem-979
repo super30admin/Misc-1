@@ -1,0 +1,75 @@
+/*
+Time Comeplexity: O(n)
+
+Leetcode Successful: 
+
+Approach:
+
+do a  post order traversal
+
+for each child determine how many coins they have (it can be positive or negative) 
+root gets the sum of the children's  totla coins and whatever coins it has itself  (could be negative or positive)
+
+this root then subtracts the total coins with required coins and let its parent know, how many surplous coins it has.
+
+now, whether the count is negative or positive, take absolute value and add it to the global steps which would be the answer. [this is because, the direction of the coin flow does not matter, all that matter is the coin has to be moved through that path]
+
+
+
+
+
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+
+class Solution {
+
+    static int totalsteps=0;
+    public int distributeCoins(TreeNode root) {
+        totalsteps=0;
+       int steps= dfs(root);
+        return totalsteps;
+    }
+    
+    
+    public int dfs(TreeNode root){
+        
+        // base case
+        if(root==null) return 0;
+        if(root.left==null && root.right==null) 
+        {
+            int steps=root.val-1;
+            
+            totalsteps+=Math.abs(steps);
+            return steps;
+        }
+        
+        
+        // left side gain or shortcoming
+        int leftCoins=dfs(root.left);
+        // right side gain or shortcoming
+        int rightCoins=dfs(root.right);
+        
+        // calculate root value i.e profit or loss
+        
+        int coins= leftCoins+rightCoins+root.val;
+        
+        
+        
+        // update steps and coin count
+        
+        int steps= coins-1;
+        totalsteps+= Math.abs(steps);
+        return steps;
+        
+    }
+}
