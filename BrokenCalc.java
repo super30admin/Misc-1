@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Time Complexity: O(t-a), where t is target and a is start value
+ * Time Complexity: O(logn), where t is target and a is start value
  * Space Complexity: O(1)
  * Did this code successfully run on Leetcode: Yes
  * Any problem you faced while coding this: None
